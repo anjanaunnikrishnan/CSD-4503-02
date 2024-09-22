@@ -1,0 +1,29 @@
+#to trigger a push event on main branch
+on:
+  push:
+    branches:
+      - main
+ #To do a job to build a docker image
+jobs:
+  build-docker-image:
+    name: to build a docker image
+
+#define machine to run the job
+#stage 1
+runs-on: ubuntu-latest
+ #define the instructions
+steps: Echo Job
+run: echo "Building the dock image"
+
+ #creating second job
+#stage 2
+job:
+  unit-test:
+    name: unit test of application
+    runs-on: ubuntu-latest
+  need[build-docker-image]: #start only after build-docker-image finishes
+    steps: echo unit test
+    run: echo unit test of application
+
+
+
